@@ -1,0 +1,939 @@
+:root {
+    font-size: 16px;
+    --bg-main-font-col: #FAFAFE;
+    --bg-scroll: #1E1E24;
+    --denconsum-col: #42ACC4;
+    --bg-navBar: #525558;
+    --bg-navbar-insumo: rgba(217, 217, 217, 0.3);
+    --color-scrollbar: #00C2CB;
+    --bg-finalizar: #62AF25;
+    --texto-nav-ins: #9A9999;
+    --bg2-tabla: #E3FAFF;
+    --editar-color: #DE8E44;
+    --eliminar-color: #F5646D;
+    --vista-general: rgba(98,175,37,0.6);
+
+    --transicion-navBar: 600ms;
+
+}
+
+/************************************************************************************************
+*                                                                                               *
+*                               E S T I L O S   G E N E R A L E S                               *
+*                                                                                               *                               *
+*************************************************************************************************/
+a {
+    text-decoration: none;
+}
+
+body {
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    min-width: 12%;
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+button span {
+    color: white;
+    font-weight: bold;
+    font-size: 1.3vw;
+    padding: 0 10% 0 0;
+}
+
+header {
+    border-bottom: 1px solid #dadce0;
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    max-height: 15vh;
+    margin-left: 5rem;
+    padding: 0 1rem 0 1rem;
+}
+
+main {
+    font-family: 'Inter',sans-serif;
+    margin-left: 5rem;
+    min-height: 90vh;
+    padding: 1rem;
+    background: var(--bg-main-font-col);
+}
+
+main h2 {
+    font-size: 1.6vw;
+    font-weight: 600;
+    margin: 2rem 0 0 5.2rem;
+}
+
+.titulos-cr-up {
+    margin-bottom: 1rem;
+}
+
+/* Cambiar el ancho de la barra de scroll */
+body::-webkit-scrollbar {
+    width: 0.6rem;
+}
+
+/* Color del fondo del scroll */
+body::-webkit-scrollbar-track {
+    background: var(--bg-scroll);
+}
+
+/* Color de la barra de scroll */
+body::-webkit-scrollbar-thumb {
+    background: var(--color-scrollbar);
+}
+
+/**************************************
+*                                     *
+* ESTILOS PARA LA BARRA DE NAVEGACIÓN *
+*                                     *
+***************************************/
+
+#navbar {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-navBar);
+    /* Animacion */
+    transition: width 200ms ease;
+}
+
+/*Creo una columna de flexbox para que los elementos se muestren de arriba a abajo*/
+#navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* cada nav item debe ocupar el 100% de ancho dentro del nav */
+.nav-item {
+    width: 100%;
+}
+
+/* El ultimo elemento del nav (logout) debe ir hasta el fondo del flexbox. Asi que le doy margin top para que vaya hacia abajo*/
+.nav-item:last-child {
+    margin-top: 7rem;
+}
+
+/* Flexbox para SVG y texto. */
+.nav-link {
+    display: flex;
+    align-items: center;
+    /* Altura de cada link */
+    height: 5rem;
+    color: var(--bg-main-font-col);
+    text-decoration: none;
+    /* Animacion de transicion entre cada link */
+    transition: var(--transicion-navBar);
+}
+
+/* Texto de cada link. Por defecto no se muestra hasta que se pase el raton por encima (hover)*/
+.link-texto {
+    display: none;
+    margin-left: 1rem;
+}
+
+/* Cada que se pase el cursor, navbar debe ampliarse a 16rem */
+#navbar:hover {
+    width: 16rem;
+} 
+
+/* Cada que se haga hover, debe aparecer el texto*/
+#navbar:hover .link-texto {
+    display: block;
+}
+
+/* Colores al hacer hover*/
+.nav-link:hover {
+    background: var(--denconsum-col);
+    color: var(--bg-main-font-col);
+}
+
+/* Iconos de cada link */
+.nav-link img {
+    min-width: 2rem;
+    margin: 0 1.5rem;
+}
+
+/* contenedor de la informacion de perfil */
+#datos-usuario {
+    height: 15vh;
+    color: var(--bg-main-font-col);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.flechas {
+    transform: rotate(0deg);
+    transition: transform var(--transicion-navBar);
+    min-width: 2rem;
+    width: 2rem;
+    margin: 0 1.5rem;
+}
+
+#navbar:hover .flechas {
+    transform: rotate(-180deg);
+}
+
+.foto-perfil {
+    display: none;
+    width: 2.5rem;
+    padding-top: 1.9rem;
+    margin: 0 0.5rem 0 1rem;
+}
+
+#navbar:hover .foto-perfil, #navbar:hover .usuario-rol {
+    display: block;
+}
+
+/* DIV para mostrar nombre y usuario  */
+
+.usuario-rol {
+    padding: 1.2rem 0.5rem 0.5rem 1rem;
+    display: none;
+}
+
+.usuario {
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.rol {
+    color: var(--denconsum-col);
+    font-size: 0.8rem;
+}
+
+
+/************************************************************************************************
+*                                                                                               *
+*                                           H E A D E R                                         *
+*                                                                                               *
+*************************************************************************************************/
+
+#titulo-header {
+    font-size: 2.1vw;
+    /* padding-left: 2rem; */
+    padding: 0.3rem 0 0 2rem;
+}
+
+/*h2 que contiene la fecha*/
+#fecha {
+    color: var(--denconsum-col);
+    font-size: 1.5vw;
+    margin-left: 50%;
+    padding: 0.6rem 0 0 0;
+}
+
+/* h3 que contiene "denconsum" */
+header h3 {
+    font-size: 1.9vw;
+    margin-left: 10%;
+}
+
+/*************************************************************************************************
+*                                                                                                *
+*                   B A R R A   D E   B U S Q U E D A   D E   I N S U M O S                      *
+*                                                                                                *
+**************************************************************************************************/
+
+/* FORMATO PARA EL <div> QUE CONTIENE LOS BOTONES */
+.div-botones-busqueda {
+    border-radius: 10px;
+    background: var(--bg-navbar-insumo);
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 0 1rem 2rem;
+    width: 91%;
+    height: 14vh;
+
+}
+
+.div-buscar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.3rem;
+    width: 35%;
+}
+
+div > label {
+    font-size: 1.22vw;
+    padding: 0.5rem 0 0.3rem 0;
+}
+
+/* FLEXBOX PARA ALINEAR HORIZONTALMENTE EL ICONO CON EL INPUT */
+.icon-input-buscar {
+    border: none;
+    width: 95%;
+    display: flex;
+}
+
+/* PROPIEDADES PARA EL ICONO AL LADO DEL INPUT */
+.icon-input-buscar img {
+    background: #FFF;
+    padding: 0.4rem 0.5rem;
+    border-radius: 10px 0 0 10px;
+} 
+
+/* PROPIEDADES PARA EL INPUT DE BUSCAR */
+.input-buscar {
+    border: none;
+    padding: 0.4rem 1rem;
+    width: 90%;
+    border-radius: 0 10px 10px 0;
+} 
+
+
+/* Margin exclusivo para la barra de busqueda en consumo */
+.div-botones-busqueda button {
+    margin-right: 1rem;
+}
+
+button span {
+    color: white;
+    font-size: 1.3vw;
+    padding: 0 10% 0 0;
+}
+
+
+button img {
+    padding: 0 10% 0 5%;
+}
+
+
+
+/************************************************************************************************
+*                                                                                               *
+*                                   C O N S U M O                                               *
+*                                                                                               *
+*************************************************************************************************/
+
+#agregar-btn {
+    background: var(--denconsum-col);
+    font-weight: bold;
+}
+
+#finalizar-btn {
+    background: var(--bg-finalizar);
+}
+
+#buscar-btn {
+    background: darkgrey;
+}
+
+/************************************************************************************************
+*                                                                                               *
+*                               I N V E N T A R I O                                             *    
+*                                                                                               *
+*************************************************************************************************/
+.div-categoria {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.15rem;
+    width: 22%;
+}
+
+#catg-insumos {
+    border: none;
+    border-radius: 10px;
+    background: #FFF;
+    padding: 0.3rem 1rem;
+    width: 90%;
+}
+
+.div-disponibilidad, .div-administrar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+#registrar-insumo-btn {
+    background:var(--bg-finalizar);
+    /* font-size: 1vw; */
+    padding: 0.5rem;
+    display: flex;
+    margin-top: 1rem;
+}
+
+
+/*********************************************************************************************
+*                                                                                            *
+*                                        T A B L A                                           *
+*                                                                                            *
+**********************************************************************************************/
+
+table {
+    border: 1px solid rgb(48, 4, 4);
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgb(196, 184, 184);
+    background-color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1vw;
+    margin: 2rem 1rem 2rem 2rem;
+    overflow: hidden;
+    width: 91%;
+}
+
+thead {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+th {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+td {
+    padding: 1rem 2rem;
+}
+
+/*ALTERNAR COLORES*/
+tr:nth-child(even) {
+    background-color: var(--bg2-tabla);
+}
+
+.input-cantidad-consumo {
+    border: 1px solid lightblue;
+    width: 10%;
+    border-radius: 5px;
+}
+
+td div {
+    /* border: 1px solid red; */
+    display: flex;
+}
+
+td div button {
+    padding: 5px 4px 5px 6px;
+    margin: 0 8px;
+}
+
+.editar-insumo-btn {
+    background: var(--editar-color);
+}
+
+.eliminar-insumo-btn {
+    background: var(--eliminar-color);
+}
+
+.vista-general-btn {
+    background: var(--vista-general);
+}
+
+/**************************************************************************************************
+*                                                                                                 *
+*                  B A R R A   D E   N A V E G A C I Ó N   I N S U M O S                          *
+*                                                                                                 *
+****************************************************************************************************/
+
+
+.navbar-insumos {
+    font-family: 'Rubik', sans-serif;
+    border-radius: 10px;
+    margin: 0 0 1rem 2rem;
+    height: 40px;
+    width: 70%;
+    background: var(--bg-navbar-insumo);
+    padding: 0;
+}
+
+.navbar-insumos-nav {
+    display: flex;
+    list-style: none;
+    /* border: 1px solid red; */
+    justify-content:space-around;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-ins-item {
+    border-radius: 10px;
+    margin: 0;
+    padding: 0.4rem 1.2rem 0.6rem 1.2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.link-insumos {
+    color: var(--texto-nav-ins);
+    padding: 0.4rem 0 0 0.4rem;
+    font-size: 1vw;
+    font-weight: bolder;
+}
+
+/* N U E V O   I N S U M O */ 
+
+
+#guardar-nuevo-insumo-btn {
+    background: var(--bg-finalizar);
+    width: 30%;
+    padding: 1rem 4rem;
+    margin-top: 2.1rem;
+    margin-left: 37%;
+}
+
+/* EDITAR INSUMO */
+#guardar-editar-insumo-btn {
+    background: var(--editar-color);
+    width: 30%;
+    padding: 1rem 4rem;
+    margin-top: 2.1rem;
+    margin-left: 37%;
+}
+
+/************************************************************************************************
+*                                                                                               *
+*                    M O D A L   C O N T A I N E R                                              *
+*                                                                                               *
+*************************************************************************************************/
+
+.vista-gral {
+    display: none;
+    background: #FFF;
+    display: flex;
+    position: absolute;
+    top: 10%;
+    left: 7%;
+    width: 84%;
+    margin-left: 2rem;
+    visibility: hidden;
+}
+
+.vista-gral.mostrar {
+    visibility: visible;
+}
+
+/* COLOR DEL TEXTO DE LA INFO EN LA VG */
+.insumo-info {
+    color: var(--bg-navBar);
+    width: 50%;
+}
+
+.insumo-info h2 {
+    margin-left: 2.5rem;
+    font-size: 1.8vw;
+    margin-bottom: 2rem;
+}
+
+.insumo-info span {
+    font-weight: 700;
+    font-size: 1.3vw;
+    margin-left: 3rem;
+} 
+
+.insumo-info p {
+    margin-left: 3rem;
+}
+
+.existencias-vista-gral {
+    background: #ECF7F9;
+    width: 50%;
+}
+
+.tabla-vista-gral {
+    border: 1px solid blue;
+}
+
+
+#cerrar-vista-gral {
+    background: firebrick;
+    color: white;
+    position: absolute;
+    left: 25%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+/* MODAL ELIMINAR USUARIO */
+.modal-container {
+    background: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+
+
+.modal-eliminar {
+    background: #FFF;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    width: 70%;
+    height: 60vh;
+    position: absolute;
+    left: 18%;
+    top: 20%;
+    visibility: hidden;
+}
+
+.modal-eliminar.mostrar, .modal-container.mostrar {
+    visibility: visible;
+}
+
+.modal-eliminar h3 {
+    font-size: 1.8vw;
+    padding: 1rem 0 2rem 2rem;
+    color: var(--eliminar-color);
+}
+
+.modal-eliminar p {
+    text-align: center;
+    font-size: 1.3vw;
+    font-weight: 600;
+}
+
+
+.modal-eliminar p, .table-container, .btn-container {
+    display: flex;
+    justify-content: center;;
+}
+
+.eliminar-table {
+    border: 1px solid rgb(48, 4, 4);
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgb(196, 184, 184);
+    background-color: var(--bg-navbar-insumo);
+    font-family: 'Inter', sans-serif;
+    font-size: 1vw;
+    margin: 2rem 1rem 2rem 2rem;
+    overflow: hidden;
+    width: 80%;
+}
+
+
+/********************************************************************************************************
+*                                                                                                       *
+*                       E N T R A D A    Y    S A L I D A                                               *
+*                                                                                                       *
+*********************************************************************************************************/
+
+.entrada-form {
+    display: none;
+    border-radius: 10px;
+    background: var(--bg-navbar-insumo);
+    margin: 1.5rem 1rem 0 2rem;
+    width: 91%;
+}
+
+.entrada-form.show {
+    display: block;
+}
+
+.salida-form {
+    display: none;
+    border-radius: 10px;
+    background: var(--bg-navbar-insumo);
+    margin: 1.5rem 1rem 0 2rem;
+    width: 91%;
+}
+
+.salida-form.show {
+    display: block;
+}
+
+.entrada-form h2, .salida-form h2 {
+    font-size: 1.6vw;
+    padding: 2rem 1rem 0 2rem;
+    margin: 0;
+}
+
+.div-buscar-es {
+    display: flex;
+    flex-direction: column;
+}
+
+.div-buscar-es label {
+    font-size: 1.4vw;
+    font-weight: 600;
+    margin-left: 25%;
+}
+
+.icon-input-buscar-es {
+    display: flex;    
+    margin-left: 25%;
+}
+
+.icon-input-buscar-es img {
+    height: 2.35rem;
+    background: #FFF;
+    border-radius: 10px 0 0 10px;
+}
+
+.input-buscar-es {
+    border: none;
+    border-radius: 0 10px 10px 0;
+    width: 60%;
+}
+
+
+.forms-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.left-form, .right-form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+form label {
+    font-size: 1.2vw;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+form input {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    padding: 0.6rem 1rem;
+}
+
+form select {
+    margin-bottom: 2rem;
+
+}
+
+/* BARRA DE ENTRADA Y SALIDA */
+.div-entrada-salida {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1.5rem;
+}
+
+#entrada-btn {
+    background: var(--denconsum-col);
+    width: 15%;
+    padding: 1rem;
+}
+
+#entrada-btn span , #salida-btn span{
+    /* border: 1px solid; */
+    padding-left: 13px;
+}
+
+#salida-btn {
+    background: #F5646D;
+    width: clamp(10%, 15%, 15%);
+}
+
+
+#guardar-entrada-btn {
+    background: goldenrod;
+    width: 30%;
+    padding: 1rem;
+    margin-left: 37%;
+}
+
+#guardar-entrada-btn span {
+    /* border: 1px solid red; */
+    padding-left: 10px;
+}
+
+/* ABRIR LOTE */
+
+#abrir-lote-btn {
+    background: var(--denconsum-col);
+    width: 13vw;
+}
+
+.caja {
+    filter: invert(100%) 
+    sepia(0%) 
+    saturate(0%) 
+    hue-rotate(204deg) 
+    brightness(102%) 
+    contrast(103%);
+}
+
+select {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #FFF;
+    border-radius: 10px;
+    font-size: 1vw;
+    padding: 0.5rem 1rem;
+}
+
+
+/**********************************************************************************************************
+*                                                                                                         *
+*                                    C A D U C I D A D E S                                                *
+*                                                                                                         *
+**********************************************************************************************************/
+
+.colores-cad {
+    display: flex;
+    align-items: center;
+    margin: 0 0.8rem;
+    /* margin: 0 1rem; */
+
+}
+
+/* PROPIEDADES PARA LOS DIVS DENTRO DE .colores-cad */
+.colores-cad div {
+    display: flex;
+    align-items: center;
+}
+
+/* PROPIEDADES PARA EL TEXTO DE LAS MEDIDAS */
+.span-cad {
+    font-size: 1vw;
+    padding: 0 0.5rem;
+}
+
+
+
+
+/**********************************************************************************************************
+*                                                                                                         *
+*                                      U S U A R I O S                                                    *
+*                                                                                                         *
+**********************************************************************************************************/
+
+#agregar-usuario-btn {
+    background: var(--denconsum-col);
+    margin-left: 78.5%;
+    margin-top: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.editar-usuario-btn {
+    background: var(--editar-color);
+}
+
+.eliminar-usuario-btn {
+    background: var(--eliminar-color);
+}
+
+#guardar-guardar-usuario-btn {
+    background: var(--denconsum-col);
+    width: 30%;
+    padding: 1rem 4rem;
+    margin-top: 2.1rem;
+    margin-left: 37%;
+}
+
+#guardar-editar-usuario-btn {
+    background: var(--editar-color);
+    width: 30%;
+    padding: 1rem 4rem;
+    margin-top: 2.1rem;
+    margin-left: 37%;
+}
+
+
+/* BOTONES PARA ELIMINAR USUARIO */
+
+#cancelar-eliminar-usuario-btn {
+    background: var(--bg-navBar);
+    margin-right: 2rem;
+}
+
+#confirmar-eliminar-usuario-btn {
+    background: var(--eliminar-color);
+}
+
+.btn-container span {
+    padding: 0 1rem;
+}
+
+/* REPORTES  *//* REPORTES  */
+
+.navbar-reportes {
+    font-family: 'Rubik', sans-serif;
+    border-radius: 10px;
+    margin-left: 2rem;
+    margin: 0 0 1rem 2rem;
+    /* height: 5vh; */
+    height: 40px;
+    width: 50%;
+    background: var(--bg-navbar-insumo);
+}
+
+/* LISTA DE ELEMENTOS DE NAVEGACIÓN */
+.navbar-reportes-nav {
+    display: flex;
+    list-style: none;
+    /* border: 1px solid red; */
+    justify-content:space-around;
+    margin: 0;
+    /* max-width: 100%;
+    max-height: 100%; */
+    padding: 0;
+}
+
+/* PROPIEDADES PARA CADA BOTON DEL NAV REPORTES */
+.nav-rep-item {
+    border-radius: 10px;
+    margin: 0rem 0 0.2rem 0;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 10rem 0.6rem 10rem;
+    cursor: pointer;
+}
+
+/* PROPIEDADES PARA EL TEXTO DE LA NAV DE REPORTES */
+.link-reportes {
+    color: var(--texto-nav-ins);
+    padding: 0.4rem 0 0 0.4rem;
+    font-size: 1vw;
+    font-weight: bolder; 
+}
+
+/* ANCHO DEL DIV PARA MES */
+.select-mes-rep {
+    width: 20%;
+}
+
+.select-mes-rep label {
+    display: flex;
+    flex-direction: column;
+}
+
+.select-mes-rep select {
+    border: none;
+    border-radius: 10px;
+    background: #FFF;
+    padding: 0.3rem 1rem;
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+#generar-reporte-btn {
+    border: none;
+    border-radius: 10px;
+    background: #42ACC4;
+    display: flex;
+    padding: 0.8rem;
+}
+
